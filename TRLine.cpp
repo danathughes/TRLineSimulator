@@ -6,40 +6,50 @@
  */
 
 #include "TRLine.h"
+#include "TRLineXSect.h"
 #include <iostream>
 #include <math.h>
 #include <complex>
 
 using namespace std;
 
-//typedef complex<double> num;
-//typedef complex<double> denom;
-
-//TRLine::TRLine(double zLoad, double Z0Coax, double betaCoax, double l) {
-//	this -> zLoad = zLoad;
-//	this -> Z0 = Z0Coax;
-//	this -> beta = betaCoax;
-//	this -> l = l;
-//}
-
-TRLine::TRLine(double zLoad, CoaxXSection coaxXSect, double l) {
+TRLine::TRLine(complex <double> zLoad, TRLineXSect *trXSect, double l) {
 	this -> zLoad = zLoad;
-	this -> coaxXSect = coaxXSect;
+	this -> trXSect = trXSect;
 	this -> l = l;
 }
 
 TRLine::~TRLine() {
 }
 
-double TRLine::getGamma(){
-	return (zLoad - coaxXsect.getZ0()) / (zLoad + coaxXsect.getZ0());
+/*
+ * Given the Z0 of the chosen XSection and the load impedance, the reflection
+ * coeff is calculated
+ */
+complex <double>  TRLine::getGamma(){
+	return (zLoad - (trXSect -> getZ0())) / (zLoad + (trXSect -> getZ0()));
 }
 
-complex <double> TRLine::getZin(){
-	double i;
-	i = -1;
-	i = sqrt(i);
-	complex <double> num = zLoad + 1i * (coaxXsect.getZ0() * tan(coaxXsect.getBeta() * l));
-	complex <double> denom = coaxXsect.getZ0() + 1i * (zLoad * tan(coaxXsect.getBeta() * l));
-	return coaxXsect.getZ0() * (num / denom);
+/*
+ * Given the Z0 of the chosen XSection and the load impedance, the reflection
+ * coeff is calculated
+ */
+complex <double> TRLine::getZin(double f){
+
+	/*This manipulation of eqs is necessary to avoid error with imaginary numbers*/
+	complex <double> num = 1i * (trXSect -> getZ0() * tan(trXSect -> getBeta(f) * l));
+	num = num + zLoad;
+	complex <double> denom = 0.0 + 1i;
+	denom = denom * zLoad * tan(trXSect -> getBeta(f) * l);
+	denom = trXSect -> getZ0() + denom;
+	return (trXSect -> getZ0()) * (num / denom);
 }
+
+double TRLine::getZ0(){
+	return trXSect -> getZ0();
+}
+
+double TRLine::getBeta(double f){
+	return trXSect -> getBeta(f);
+}
+

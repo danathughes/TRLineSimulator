@@ -7,6 +7,7 @@
 
 #include "TRLine.h"
 #include "TRLineXSect.h"
+#include "CoaxXSection.h"
 #include <iostream>
 #include <math.h>
 #include <complex>
@@ -45,7 +46,7 @@ complex <double> TRLine::getZin(double f){
 	return (trXSect -> getZ0()) * (num / denom);
 }
 
-double TRLine::getZ0(){
+complex<double> TRLine::getZ0(){
 	return trXSect -> getZ0();
 }
 

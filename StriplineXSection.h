@@ -8,10 +8,7 @@
 #ifndef STRIPLINEXSECTION_H_
 #define STRIPLINEXSECTION_H_
 
-#include "TRLineXSect.h"
-
-class StriplineXSection : public TRLineXSect
-{
+class StriplineXSection {
 public:
 	StriplineXSection(double w, double b, double t, double eps);
 	~StriplineXSection();

@@ -8,10 +8,7 @@
 #ifndef COAXXSECTION_H_
 #define COAXXSECTION_H_
 
-#include "TRLineXSect.h"
-
-class CoaxXSection : public TRLineXSect
-{
+class CoaxXSection {
 public:
 	CoaxXSection(double r, double R, double eps);
 	virtual ~CoaxXSection();

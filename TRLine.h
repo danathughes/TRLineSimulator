@@ -6,8 +6,6 @@
  */
 
 #include <complex>
-#include "TRLineXSect.h"
-
 #ifndef TRLINE_H_
 #define TRLINE_H_
 using namespace std;
@@ -16,20 +14,16 @@ using namespace std;
 class TRLine {
 public:
 	//TRLine(double zLoad, double Z0Coax, double betaCoax, double l);
-        // DANA:  Altered this constructor to allow any type of 
-	TRLine(complex<double> zLoad, TRLineXSect* trLineXSect, double l);
+	TRLine(double zLoad, CoaxXSection coaxXSect, double l);
 	virtual ~TRLine();
 
 	/* Function Prototypes */
-	complex <double> getGamma();
-	complex <double> getZin(double f);
-	complex <double> getZ0();
-	double getBeta(double f);
+		double getGamma();
+		complex <double> getZin();
 
 private:
-	complex<double> zLoad;
-        double l;
-	TRLineXSect* trXSect;
+	double zLoad, l;
+	CoaxXSection coaxXSect;
 };
 
 #endif /* TRLINE_H_ */

@@ -48,9 +48,13 @@ complex <double> TRLinesTotal::getZin(double f, int j, complex <double> temp){
 	TRLine current = TRLines.at(j);
 
 	/*This manipulation of eqs is necessary to avoid error with imaginary numbers*/
-	complex <double> num = 1i * (current.getZ0()) *
-			tan(current.getBeta(f)) * lengths.at(j);
+
+	complex <double> num = 1i * (current.getZ0() * tan(current.getBeta(f) * (lengths.at(j))));
 	num  = num + temp;
+
+	//	complex <double> num = 0.0 * 1i;
+	//	num = num * (current.getZ0() * tan(current.getBeta(f) * (lengths.at(j))));
+	//	num  = num + temp;
 	complex <double> denom = 0.0 + 1i;
 	denom = denom *	(temp * tan(current.getBeta(f) * (lengths.at(j))));
 	denom = current.getZ0() + denom;

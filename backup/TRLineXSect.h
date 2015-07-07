@@ -14,7 +14,6 @@ public:
 
 	virtual double getBeta(double f) = 0;
 
-	virtual void setOuterRadius(double R0) = 0;
 
 };
 

@@ -10,8 +10,7 @@
 #include "TRLineXSect.h"
 using namespace std;
 
-class StriplineXSection : public TRLineXSect
-{
+class StriplineXSection : public TRLineXSect {
 public:
 
 	/*
@@ -69,7 +68,8 @@ public:
 	 * case: frequency and permittivity).
 	 */
 	double getBeta(double f);
-	int main();
+
+	void setOuterRadius(double R0);
 
 private:
 

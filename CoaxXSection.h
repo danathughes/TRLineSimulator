@@ -1,5 +1,4 @@
-/*
- * CoaxXSection.h
+/* CoaxXSection.h
  *
  *  Created on: Jun 15, 2015
  *      Author: sarahradzihovsky
@@ -10,8 +9,7 @@
 #include "TRLineXSect.h"
 using namespace std;
 
-class CoaxXSection : public TRLineXSect
-{
+class CoaxXSection : public TRLineXSect {
 public:
 	/*
 	 * Constructor: CoaxXSection
@@ -67,6 +65,8 @@ public:
 	 * case: frequency and permittivity).
 	 */
 	double getBeta(double f);
+
+	void setOuterRadius(double R0);
 
 private:
 

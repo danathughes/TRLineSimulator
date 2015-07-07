@@ -1,34 +1,35 @@
 /*
- * MicrostripXSection.h
+ * StriplineXSection.h
  *
  *  Created on: Jun 15, 2015
  *      Author: sarahradzihovsky
  */
 
-#ifndef MICROSTRIPXSECTION_H_
-#define MICROSTRIPXSECTION_H_
+#ifndef STRIPLINEXSECTION_H_
+#define STRIPLINEXSECTION_H_
 #include "TRLineXSect.h"
 using namespace std;
 
-class MicrostripXSection : public TRLineXSect {
+class StriplineXSection : public TRLineXSect
+{
 public:
 
 	/*
-	 * Constructor: MicrostripXSection
-	 * Usage: trXSect = new MicrostripXSection (w, h, t, eps);
+	 * Constructor: StriplineXSection
+	 * Usage: trXSect = new StriplineXSection (w, b, t, eps);
 	 * -----------------------
 	 * Links function parameters with privately declared variables
 	 */
-	MicrostripXSection(double w, double h, double t, double eps);
+	StriplineXSection(double w, double b, double t, double eps);
 
 	/*
-	 * Destructor: ~MicrostripXSection
+	 * Destructor: ~StriplineXSection
 	 * ------------------
-	 * The destructor deallocates the storage for this MicrostripXSection.
+	 * The destructor deallocates the storage for this StriplineXSection.
 	 * It must be declared virtual to ensure that the correct subclass
 	 * destructor is called when deleting an expression.
 	 */
-	virtual ~MicrostripXSection();
+	virtual ~StriplineXSection();
 
 	/*
 	 * Method: getZ0
@@ -44,7 +45,7 @@ public:
 	 * Method: getF
 	 * Usage: getF();
 	 * ----------------------------
-	 * Used to calculate Z0. Given width and height, finds F,
+	 * Used to calculate Z0. Given width, strip thickness, and height, finds F,
 	 * which is a factor of Z0.
 	 */
 	double getF();
@@ -58,6 +59,7 @@ public:
 	 */
 	double getEta();
 
+
 	/*
 	 * Method: getBeta
 	 * Usage: trXSect -> getBeta();
@@ -67,14 +69,11 @@ public:
 	 * case: frequency and permittivity).
 	 */
 	double getBeta(double f);
-
-
-	void setOuterRadius(double R0);
+	int main();
 
 private:
 
-	double w, h, t, eps;
-
+	double w, b, t, eps;
 };
 
-#endif /* MICROSTRIPXSECTION_H_ */
+#endif /* STRIPLINEXSECTION_H_ */

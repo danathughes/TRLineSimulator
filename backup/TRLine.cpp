@@ -10,7 +10,6 @@
 #include <iostream>
 #include <math.h>
 #include <complex>
-#include <vector>
 
 using namespace std;
 
@@ -46,15 +45,11 @@ complex <double> TRLine::getZin(double f){
 	return (trXSect -> getZ0()) * (num / denom);
 }
 
-double TRLine::getZ0(){
+complex <double> TRLine::getZ0(){
 	return trXSect -> getZ0();
 }
 
 double TRLine::getBeta(double f){
 	return trXSect -> getBeta(f);
-}
-
-TRLineXSect* TRLine::getXSections(){
-	return trXSect;
 }
 

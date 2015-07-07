@@ -15,7 +15,8 @@ using namespace std;
 const double eps0 = 8.854 * pow(10.0 , -12.0);
 const double mu0 = 4.0 * M_PI * pow(10.0, -7.0);
 
-CoaxXSection::CoaxXSection(double r, double R, double eps) {
+CoaxXSection::CoaxXSection(double r, double R, double eps)
+{
 	this -> r = r;
 	this -> R = R;
 	this -> eps = eps;
@@ -45,9 +46,4 @@ double CoaxXSection::getEta(){
 double CoaxXSection::getBeta(double f){
 	return ((2.0 * M_PI) * f * sqrt(mu0 * eps * eps0));
 }
-
-void CoaxXSection::setOuterRadius(double R0){
-	R = R0;
-}
-
 

@@ -6,6 +6,7 @@
  */
 
 #include "MicrostripXSection.h"
+#include "TRLineXSect.h"
 #include <iostream>
 #include <math.h>
 using namespace std;
@@ -25,12 +26,14 @@ MicrostripXSection::MicrostripXSection(double w, double h, double t, double eps)
 MicrostripXSection::~MicrostripXSection() {
 }
 
+/*Finds Z0 through eta and F*/
 double MicrostripXSection::getZ0(){
 	double F = getF();
 	double eta = getEta();
 	return F * eta;
 }
 
+/*Given width and height of Microstrip, F is found*/
 double MicrostripXSection::getF(){
 	if ((w / h) <= 1) {
 		double logInput = ((8.0 * h) / w) + (w / (4.0 * h));
@@ -41,10 +44,12 @@ double MicrostripXSection::getF(){
 	}
 }
 
+/*Given permittivity, Eta is found*/
 double MicrostripXSection::getEta(){
 	return sqrt(mu0 / (eps * eps0));
 }
 
+/*Given permittivity and frequency, Eta is found*/
 double MicrostripXSection::getBeta(double f){
 	return ((2.0 * M_PI) * f * sqrt(mu0 * eps * eps0));
 }

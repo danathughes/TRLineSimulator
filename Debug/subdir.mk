@@ -7,18 +7,27 @@ CPP_SRCS += \
 ../CoaxXSection.cpp \
 ../MicrostripXSection.cpp \
 ../StriplineXSection.cpp \
+../TRLine.cpp \
+../TRLineXSect.cpp \
+../TRLinesTotal.cpp \
 ../TRTest.cpp 
 
 OBJS += \
 ./CoaxXSection.o \
 ./MicrostripXSection.o \
 ./StriplineXSection.o \
+./TRLine.o \
+./TRLineXSect.o \
+./TRLinesTotal.o \
 ./TRTest.o 
 
 CPP_DEPS += \
 ./CoaxXSection.d \
 ./MicrostripXSection.d \
 ./StriplineXSection.d \
+./TRLine.d \
+./TRLineXSect.d \
+./TRLinesTotal.d \
 ./TRTest.d 
 
 

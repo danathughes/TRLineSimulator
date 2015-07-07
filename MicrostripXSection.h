@@ -7,15 +7,11 @@
 
 #ifndef MICROSTRIPXSECTION_H_
 #define MICROSTRIPXSECTION_H_
-
-#include "TRLineXSect.h"
-
 #include <iostream>
 #include <math.h>
 using namespace std;
 
-class MicrostripXSection : public TRLineXSect
-{
+class MicrostripXSection {
 public:
 	MicrostripXSection(double w, double h, double t, double eps);
 	~MicrostripXSection();

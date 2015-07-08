@@ -106,11 +106,18 @@ int main() {
 			pinchedLengths.push_back(lengths.at(i + k));
 		}
 
-		//prints out Zin and Gamma for each finger segment which consists of multiple TRLine segments
+		/*
+		 * Prints out finger position and magnitude & phase of reflection coefficient
+		 * for each finger segment which consists of multiple TRLine segments.
+		 */
 		TRLinesTotal fingerPinch(pinchedSeg, pinchedLengths, zLoad);
-		cout << "Zin (ohms), Reflection Coefficient = " << fingerPinch.getZinTotal(f)
-																					<< ", " << fingerPinch.getGammaTotal(f) << endl;
+		complex <double> gamma = fingerPinch.getGammaTotal(f);
+		double rl = real(gamma);
+		double img = imag(gamma);
+		double magn = sqrt(pow(rl, 2) + pow(img, 2));
+		double phase = atan(img / rl);
 		cout << "center of finger at " << x << "meters from end" << endl;
+		cout << "Gamma Magnitude, Gamma Phase" << magn << ", " << phase << endl;
 
 		//CSV file headers and opening of file
 //		ofstream Pinch_Data ("TRLine_Pinch_Data");

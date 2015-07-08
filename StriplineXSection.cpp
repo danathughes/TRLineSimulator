@@ -6,6 +6,7 @@
  */
 
 #include "StriplineXSection.h"
+#include "TRLineXSect.h"
 #include <iostream>
 #include <math.h>
 using namespace std;
@@ -25,12 +26,17 @@ StriplineXSection::StriplineXSection(double w, double b, double t, double eps) {
 StriplineXSection::~StriplineXSection() {
 }
 
+/* Given F and eta, calculates Z0*/
 double StriplineXSection::getZ0(){
 	double F = getF();
 	double eta = getEta();
 	return F * eta;
 }
 
+/*
+ * Given width and height of stripline, and thickness of material,
+ * calculates F
+ */
 double StriplineXSection::getF(){
 	if ((w / (b - t)) <= 0.35) {
 		double logInput = 8.0 / (((M_PI * w) / b) + (t / b) * (1.0 + log((4.0 * M_PI * w)/b)));
@@ -42,10 +48,12 @@ double StriplineXSection::getF(){
 	}
 }
 
+/* Given permittivity, calculates Eta*/
 double StriplineXSection::getEta(){
 	return sqrt(mu0 / (eps * eps0));
 }
 
+/*Given permittivity and frequency*/
 double StriplineXSection::getBeta(double f){
 	return ((2.0 * M_PI) * f * sqrt(mu0 * eps * eps0));
 }

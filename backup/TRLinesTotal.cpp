@@ -20,9 +20,6 @@ using namespace std;
 
 TRLinesTotal::TRLinesTotal(vector <TRLine> TRLines, vector <int> lengths,
 		complex <double>  zLoad) {
-
-	//vector <TRLine> *holder = &TRLines;
-	//this -> TRLines = *holder;
 	this -> TRLines = TRLines;
 	this -> lengths = lengths;
 	this -> zLoad = zLoad;
@@ -48,13 +45,9 @@ complex <double> TRLinesTotal::getZin(double f, int j, complex <double> temp){
 	TRLine current = TRLines.at(j);
 
 	/*This manipulation of eqs is necessary to avoid error with imaginary numbers*/
-
-	complex <double> num = 1i * (current.getZ0() * tan(current.getBeta(f) * (lengths.at(j))));
+	complex <double> num = 0.0 + 1i;
+	num = num * (current.getZ0() * tan(current.getBeta(f) * (lengths.at(j))));
 	num  = num + temp;
-
-	//	complex <double> num = 0.0 * 1i;
-	//	num = num * (current.getZ0() * tan(current.getBeta(f) * (lengths.at(j))));
-	//	num  = num + temp;
 	complex <double> denom = 0.0 + 1i;
 	denom = denom *	(temp * tan(current.getBeta(f) * (lengths.at(j))));
 	denom = current.getZ0() + denom;
@@ -65,13 +58,4 @@ complex <double> TRLinesTotal::getGammaTotal(double f){
 	TRLine first = TRLines.at(0);
 	return ((this -> getZinTotal(f)) - (first.getZ0())) /
 			((this -> getZinTotal(f)) + (first.getZ0()));
-}
-
-vector <TRLine> TRLinesTotal::getSegments(int start, int end){
-	vector <TRLine> pinched;
-	for(int i = start; i < end; i++){
-		TRLine temp = TRLines.at(i);
-		pinched.push_back(temp);
-	}
-	return pinched;
 }

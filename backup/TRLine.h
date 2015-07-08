@@ -58,7 +58,7 @@ public:
 	 * ----------------------------
 	 * Gets the internal impedance of the XSection that makes up the TRLine segment
 	 */
-	double getZ0();
+	complex <double> getZ0();
 
 	/*
 	 * Method: getBeta
@@ -67,8 +67,6 @@ public:
 	 * Gets the phase constant of the XSection that makes up the TRLine segment
 	 */
 	double getBeta(double f);
-
-	TRLineXSect* getXSections();
 
 private:
 	double l;
